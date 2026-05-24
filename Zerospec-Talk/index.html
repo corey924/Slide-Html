@@ -362,7 +362,10 @@
             <div class="card">
               <h3>Continuous SDD</h3>
               <ul>
-                <li><code>SPEC</code> / <code>ADR</code> / <code>SA</code></li>
+                <li>
+                  <code>SPEC</code> / <code>ADR</code> / <code>SA</code> /
+                  <code>IMPL</code>
+                </li>
                 <li>
                   <code>UPDATE</code> / <code>AUDIT</code> / <code>DRIFT</code>
                 </li>
@@ -370,8 +373,7 @@
             </div>
           </div>
           <p class="footer-line fragment">
-            純 Markdown、零依賴、不綁單一 AI 平台；Prompt Pack 是操作入口，不是
-            runtime。
+            純 Markdown、零依賴、不綁單一 AI 平台。
           </p>
         </section>
 
@@ -522,7 +524,9 @@
                 </li>
                 <li style="margin-bottom: 0.6em">
                   <strong>/docs/README.md</strong>：為人類開發者設計，作為 SDD
-                  文件導覽與治理規範目錄。
+                  文件導覽目錄；<em
+                    >並內建決策矩陣供 AI 於任務結束時自動評估。</em
+                  >
                 </li>
                 <li>
                   <strong>劃定邊界</strong
@@ -535,9 +539,85 @@
         </section>
 
         <section>
+          <h2 style="margin-bottom: 0.2em">進階自動化：Agent-Skill 整合</h2>
+          <p
+            class="lead"
+            style="margin-bottom: 0.5em; font-size: 0.9em; white-space: nowrap"
+          >
+            ZeroSpec 追加附掛 Skill，可掛載 Router 實現對話觸發。
+          </p>
+          <div class="grid-2">
+            <div class="card" style="text-align: left; padding: 0.5em 1em">
+              <h3
+                style="color: #4ec5d4; font-size: 1.05em; margin-bottom: 0.1em"
+              >
+                專案級同步 (Local)
+              </h3>
+              <p
+                style="
+                  font-size: 0.75em;
+                  line-height: 1.2;
+                  margin-bottom: 0.4em;
+                  color: #555;
+                "
+              >
+                免安裝，隨 Git 發布。團隊 clone 下來後，VS Code Copilot
+                等工具可直接讀取專案內的技能。
+              </p>
+              <div
+                style="
+                  background: #172033;
+                  color: #fdfdfd;
+                  padding: 0.4em 0.8em;
+                  border-radius: 4px;
+                  font-family: monospace;
+                  font-size: 0.6em;
+                "
+              >
+                .agents/skills/
+              </div>
+            </div>
+            <div class="card" style="text-align: left; padding: 0.5em 1em">
+              <h3
+                style="color: #4ec5d4; font-size: 1.05em; margin-bottom: 0.1em"
+              >
+                個人全域 (Global)
+              </h3>
+              <p
+                style="
+                  font-size: 0.75em;
+                  line-height: 1.2;
+                  margin-bottom: 0.4em;
+                  color: #555;
+                "
+              >
+                一次安裝，所有專案皆可自動化。支援 Claude Code 與 Codex CLI
+                等工具，可透過腳本快速掛載。
+              </p>
+              <div
+                style="
+                  background: #172033;
+                  color: #fdfdfd;
+                  padding: 0.4em 0.8em;
+                  border-radius: 4px;
+                  font-family: monospace;
+                  font-size: 0.6em;
+                "
+              >
+                ~/.claude/skills/ <br />
+                $HOME/.agents/skills/
+              </div>
+            </div>
+          </div>
+          <p class="footer-line fragment" style="margin-top: 0.3em">
+            💡 這是選用的方法。仍然可以手動貼 <code>prompts/</code> 不裝 Skill。
+          </p>
+        </section>
+
+        <section>
           <h2>二、新功能開發</h2>
           <p class="lead" style="margin-bottom: 0.1em; white-space: nowrap">
-            每次新功能，從讀 AGENTS.md 開始，確認 SPEC 後再讓 Agent 動手。
+            每次新功能，從讀 AGENTS.md 開始，確認 SPEC 後再動手。
           </p>
           <img
             src="./assets/04.jpg"
@@ -571,8 +651,8 @@
             "
           />
           <p class="footer-line fragment" style="margin-top: 0.6em">
-            💡 維護的核心：藉由 CLI 或 prompt
-            隨時保持代碼與地圖的低成本同步，避免文件過期。
+            💡 維護的核心：藉由 AI 自動觸發訊號或手動執行
+            prompt，保持與地圖同步，避免文件過期。
           </p>
         </section>
 
@@ -582,7 +662,8 @@
             <li>SDD 的第一步，是先讓上下文可被理解。</li>
             <li>AI 寫程式不穩，常常是專案地圖不完整，不只是模型差。</li>
             <li>
-              ZeroSpec 是 Layer 0 的最小起點，可以漸進銜接 OpenSpec / Spec Kit。
+              ZeroSpec 是最小起點：基礎文件即可自主運作，也能漸進銜接 OpenSpec /
+              Spec Kit。
             </li>
           </ol>
           <div
@@ -637,22 +718,22 @@
               <tr>
                 <td>GitHub Copilot</td>
                 <td>VS Code Agent</td>
-                <td>custom instructions / @AGENTS.md</td>
+                <td>@AGENTS.md / Local Skill (.agents/)</td>
               </tr>
               <tr>
                 <td>Claude Code</td>
                 <td>CLI agent</td>
-                <td>CLAUDE.md 指向 AGENTS.md</td>
+                <td>@AGENTS.md / Global Skill (~/.claude/)</td>
               </tr>
               <tr>
                 <td>Cursor</td>
                 <td>Agent / Composer</td>
-                <td>讀 AGENTS.md 或相關規則檔</td>
+                <td>@AGENTS.md / 視需求手動貼 prompts/</td>
               </tr>
               <tr>
                 <td>Codex</td>
                 <td>CLI / desktop agent</td>
-                <td>讀 repo 指引或直接貼入上下文</td>
+                <td>@AGENTS.md / Global Skill ($HOME/.agents/)</td>
               </tr>
             </tbody>
           </table>
