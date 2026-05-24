@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>簡報標題</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css"
+    />
+    <link rel="stylesheet" href="../../assets/slide-template.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>簡報標題</h1>
+          <p class="muted">副標題或活動名稱</p>
+          <aside class="notes">在這裡補講者備註。</aside>
+        </section>
+
+        <section>
+          <h2>大綱</h2>
+          <ol>
+            <li>背景脈絡</li>
+            <li>核心觀點</li>
+            <li>範例與下一步</li>
+          </ol>
+          <aside class="notes">大綱保持短，聚焦聽眾可以帶走什麼。</aside>
+        </section>
+
+        <section>
+          <h2>範例版面</h2>
+          <div class="grid-2">
+            <div>
+              <h3>重點</h3>
+              <p>
+                用
+                <span class="highlight">清楚的視覺結構</span>
+                讓複雜概念更容易掃讀。
+              </p>
+              <div class="note-box">投影片文字保持短，細節放到講者備註。</div>
+            </div>
+            <div>
+              <pre><code class="language-html" data-trim>
+              &lt;section&gt;
+                &lt;h2&gt;範例&lt;/h2&gt;
+                &lt;p&gt;短句重點&lt;/p&gt;
+              &lt;/section&gt;
+            </code></pre>
+              <p class="code-caption">支援 highlight 的程式碼區塊。</p>
+            </div>
+          </div>
+          <aside class="notes">可用這一頁作為雙欄說明投影片的起點。</aside>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 1920,
+        height: 1080,
+        hash: true,
+        slideNumber: true,
+        plugins: [RevealNotes, RevealHighlight],
+      });
+    </script>
+  </body>
+</html>
